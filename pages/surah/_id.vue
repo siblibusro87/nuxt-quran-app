@@ -16,23 +16,20 @@
 
 <script>
 import axios from 'axios'
-
 export default {
   name: 'surah',
   data() {
-    isPlaying: false
+    return {
+      isPlaying: false,
+    }
   },
-  async asyncData({ params, error }) {
+  async asyncData({ $axios, params, error }) {
     try {
-      const { data } = await axios.get(`http://localhost:3000/api/surah/${params.id}.json`)
-      console.log(data)
+      const { data } = await $axios.get(`/surah/${params.id}.json`)
       return { surah: data }
     } catch (e) {
       error({ statusCode: 404, message: "Surah not found" })
     }
-  },
-  mounted() {
-    console.log(this.surah)
   },
   methods: {
     playSound (sound) {

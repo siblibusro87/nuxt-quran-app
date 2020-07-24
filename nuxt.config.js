@@ -58,14 +58,14 @@ export default {
     '@nuxtjs/proxy',
   ],
   proxy: {
-    '/api': {target:'https://raw.githubusercontent.com/penggguna/QuranJSON/master/', pathRewrite: {'^/api/': ''}, changeOrigin: true},
+    // '/api': {target:'https://raw.githubusercontent.com/penggguna/QuranJSON/master/', pathRewrite: {'^/api/': ''}, changeOrigin: true},
   },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    proxy: true
+    baseURL: 'https://raw.githubusercontent.com/penggguna/QuranJSON/master'
   },
   /*
   ** Build configuration

@@ -38,20 +38,6 @@
             <b-table-column field="number_of_ayah" label="Number of Ayah">
                 {{ props.row.number_of_ayah }}
             </b-table-column>
-
-            
-
-              <!-- name: 'Al-Ahzab',
-name_translations: {
-  ar: 'الأحزاب',
-  en: 'The Clans',
-  id: 'Golongan Yang Bersekutu'
-},
-number_of_ayah: 73,
-number_of_surah: 33,
-place: 'Medina',
-recitation: 'https://download.quranicaudio.com/quran/mishaari_raashid_al_3afaasee/033.mp3',
-type: 'Madaniyah' -->
         </template>
     </b-table>
   </section>
@@ -59,13 +45,11 @@ type: 'Madaniyah' -->
 
 <script>
 import Card from '~/components/Card'
-import axios from 'axios'
 
 export default {
   name: 'HomePage',
   data() {
     return {
-      // data: [],
       isPaginated: true,
       isPaginationSimple: false,
       paginationPosition: 'bottom',
@@ -78,9 +62,9 @@ export default {
       isMobileCards: true
     }
   },
-  async asyncData({ error }) {
+  async asyncData({ $axios, error }) {
     try {
-      const { data } = await axios.get("http://localhost:3000/api/quran.json")
+      const { data } = await $axios.get("/quran.json")
       return { quranData: data }
     } catch (e) {
       error({ statusCode: 404, message: "Quran data not loaded properly" })
@@ -94,7 +78,10 @@ export default {
   },
   head() {
     return {
-      title: 'Read Quran'
+      title: 'Read Quran',
+      meta: [
+        { hid: 'description', name: 'description', content: `Read Quran Everywhere` }
+      ],
     }
   }
 }
