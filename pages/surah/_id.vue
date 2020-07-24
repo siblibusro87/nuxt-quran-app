@@ -1,16 +1,23 @@
 <template>
   <div>
-    <h1>{{ surah.name }}</h1>
-    <h1>{{ surah.name_translations['en'] }} - {{ surah.name_translations['id'] }}</h1>
-    <h1>Surah No. {{ surah.number_of_surah }} of 114 - {{ surah.number_of_ayah }} Ayah</h1>
-    <div v-for="verse in surah.verses" :key="verse.number">
-      <h1>{{ verse.text }}</h1>
-      <h1>{{ verse.translation_en }}</h1>
-      <h1>{{ verse.translation_id }}</h1>
-      </br>
+    <div>
+      <full-page ref="fullpage" :options="options" id="fullpage">
+        <!-- <section v-if="surah.length==0" class="section"></section> -->
+        <div v-for="(verse, index) in surah.verses" :key="index" class="section">
+          <h1>{{ surah.name }}</h1>
+          <br />
+          <h1 class="title is-1">{{ verse.text }}</h1>
+          <h1>{{ verse.translation_en }}</h1>
+          <h1>{{ verse.translation_id }}</h1>
+          <h1>{{ surah.name_translations['en'] }} - {{ surah.name_translations['id'] }}</h1>
+          <br />
+          <h1>{{ index+1 }} of {{ surah.number_of_ayah }} Ayah</h1>
+        </div>
+      </full-page>
     </div>
-    <br>
-    <b-button size="is-large" icon-left="github-circle" @click.prevent="this.isPlaying ? pauseSound(surah.recitations[0].audio_url) : playSound(surah.recitations[0].audio_url)">Listen to {{ surah.name }}</b-button>
+    <div>
+
+    </div>
   </div>
 </template>
 
@@ -21,6 +28,9 @@ export default {
   data() {
     return {
       isPlaying: false,
+      options: {
+        scrollBar: true
+      }
     }
   },
   async asyncData({ $axios, params, error }) {
@@ -56,7 +66,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>

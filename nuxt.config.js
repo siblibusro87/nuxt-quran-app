@@ -35,6 +35,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    { src: '~/plugins/fullpage', mode: 'client' }
   ],
   /*
   ** Auto import components
@@ -56,6 +57,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/proxy',
+    'nuxt-fullpage.js',
   ],
   proxy: {
     // '/api': {target:'https://raw.githubusercontent.com/penggguna/QuranJSON/master/', pathRewrite: {'^/api/': ''}, changeOrigin: true},
