@@ -4,6 +4,11 @@ export default {
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
   */
+  
+  generate: {
+    fallback: true
+  },
+  
   mode: 'universal',
   /*
   ** Nuxt target
